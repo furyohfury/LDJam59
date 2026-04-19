@@ -470,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7e8222ce7448159d57514c0e0e20e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CameraPositioner
+  _padding: 1
 --- !u!1 &529524577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,8 +1107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.EntryPoint
   InitialChargePickupsCount: 3
-  InitialChargePickupsRandomAmount: {x: 3, y: 5}
-  MinimalSignalDistanceFromPlayer: 3
+  InitialChargePickupsRandomValue: {x: 3, y: 5}
+  MinimalSignalDistanceFromPlayer: 5
   MapSize: {x: 15, y: 15}
   EnemiesStartNumber: 5
 --- !u!1 &975860316
