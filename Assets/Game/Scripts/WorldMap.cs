@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Game.Extensions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -26,7 +27,7 @@ namespace Game
         [SerializeField]
         private Sprite _borderStraightSprite;
         [SerializeField]
-        private Sprite _singleObstacleSprite;
+        private Sprite[] _singleObstacleSprites;
         [SerializeField]
         private Sprite _twoSizedObstacleSpriteUpper;
 
@@ -309,7 +310,7 @@ namespace Game
         {
             // 1. Создаем НОВЫЙ тайл препятствия
             Tile obstacleTile = ScriptableObject.CreateInstance<Tile>();
-            obstacleTile.sprite = _singleObstacleSprite;
+            obstacleTile.sprite = _singleObstacleSprites.GetRandom();
 
             // 2. Рассчитываем цвет для этого НОВОГО тайла
             obstacleTile.color = (pos.x + pos.y) % 2 == 0
