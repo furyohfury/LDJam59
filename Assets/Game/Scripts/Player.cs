@@ -65,15 +65,23 @@ namespace Game
             PlayerGridTile = WorldMap.Instance.GetTileOrNull(newTile);
             DestroyExistingGlows();
             _animator.SetTrigger("MoveLeft");
-            Charge--;
             float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
             transform.DOMove(tilePosition, duration).SetEase(_moveEase);
+            PlayerController.Instance.Disable();
 
             await Awaitable.WaitForSecondsAsync(duration);
 
+            PlayerController.Instance.Enable();
+            Charge--;
             UpdatePossibleCellsGlow();
             ProcessIntermediateTilesEntities(direction, distance, initialTilePos);
             ProcessEndTileEntities();
+
+            if (Charge <= 0)
+            {
+                Discharge();
+            }
+
             WorldMap.Instance.SwapEntityTile(Entity, newTile);
         }
 
@@ -142,6 +150,11 @@ namespace Game
         private void Die()
         {
             _animator.SetTrigger("Die");
+        }
+
+        private void Discharge()
+        {
+            _animator.SetTrigger("Discharge");
         }
 
         public void UpdatePossibleCellsGlow()
