@@ -2,9 +2,9 @@
 
 namespace Game
 {
-    public sealed class CameraPositioner : MonoBehaviour
+    public sealed class CameraPositioner : Singleton<CameraPositioner>
     {
-        private void Start()
+        public void Init()
         {
             Vector2Int center = WorldMap.Instance.Size / 2;
             Vector2 tilePosition = WorldMap.Instance.GetTilePosition(center);

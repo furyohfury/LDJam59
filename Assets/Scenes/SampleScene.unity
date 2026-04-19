@@ -933,7 +933,6 @@ MonoBehaviour:
   - {fileID: 1338135854861591961, guid: ed2aceb679d2ce142956603b97c189d3, type: 3}
   - {fileID: 1338135854861591961, guid: 2df8dd7a1f3f9a0459badb6b0a31ac5f, type: 3}
   - {fileID: 1338135854861591961, guid: 65b33a8e906cf3549ae3eaaacf21b21d, type: 3}
-  _startNumber: 2
   _container: {fileID: 723356773}
 --- !u!1 &968772265
 GameObject:
@@ -1106,9 +1105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f088340acf24ed59d4bd719e71704da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.EntryPoint
-  InitialChargePickups: 3
-  InitialChargePickupsBorders: {x: 3, y: 5}
-  SignalDistanceFromPlayer: 3
+  InitialChargePickupsCount: 3
+  InitialChargePickupsRandomAmount: {x: 3, y: 5}
+  MinimalSignalDistanceFromPlayer: 3
+  MapSize: {x: 15, y: 15}
+  EnemiesStartNumber: 5
 --- !u!1 &975860316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.PlayerChargeUI
   _text: {fileID: 1647288801}
+  _punchScaleAnim: 0.13
+  _punchAnimDuration: 0.1
 --- !u!1 &1063030018
 GameObject:
   m_ObjectHideFlags: 0

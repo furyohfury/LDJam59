@@ -4,9 +4,9 @@ namespace Game
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        public int InitialChargePickups = 3;
-        public Vector2Int InitialChargePickupsBorders = new Vector2Int(3, 5);
-        public int SignalDistanceFromPlayer = 3;
+        public int InitialChargePickupsCount = 3;
+        public Vector2Int InitialChargePickupsRandomAmount = new Vector2Int(3, 5);
+        public int MinimalSignalDistanceFromPlayer = 3;
         public Vector2Int MapSize = new Vector2Int(15, 15);
         public int EnemiesStartNumber = 2;
 
@@ -18,8 +18,9 @@ namespace Game
             Player.Instance.UpdatePossibleCellsGlow();
             PlayerDeathObserver.Instance.Init();
             PlayerChargeUI.Instance.Init();
-            ChargePickupSystem.Instance.SpawnChargePickups(InitialChargePickups, InitialChargePickupsBorders);
-            SignalSystem.Instance.SpawnSignal(SignalDistanceFromPlayer);
+            ChargePickupSystem.Instance.SpawnChargePickups(InitialChargePickupsCount, InitialChargePickupsRandomAmount);
+            SignalSystem.Instance.SpawnSignal(MinimalSignalDistanceFromPlayer);
+            CameraPositioner.Instance.Init();
         }
     }
 }
