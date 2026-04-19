@@ -9,7 +9,8 @@ namespace Game
     {
         public Vector2Int MapSize = new Vector2Int(19, 11);
         [Tooltip("Число на которое делится количество клеток сетки чтобы получить количество одноклеточных препятствий")] [SerializeField]
-        public int _singleSizedObstacleSizeFraction = 20;
+        public int _singleSizedObstacleSizeFraction = 40;
+        public int BlockObstaclesSizeFraction = 40;
         [Tooltip("Число на которое делится количество клеток сетки чтобы получить количество двухклеточных препятствий")] [SerializeField]
         public int _twoSizedObstacleSizeFraction = 30;
         public int KillEnemyScoreBounty = 100;
@@ -17,5 +18,8 @@ namespace Game
         public int PlayerInitialCharge = 20;
         public int KillEnemyChargeBonus = 5;
         public int SignalPickupChargeBonus = 20;
+        [Tooltip("Поднимать ли пикапы зарядов при переходе через них")]
+        public bool ConsumeChargePickupsOnTraverse = true;
+        public bool CanPassThroughBlockObstacles = false;
     }
 }

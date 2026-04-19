@@ -9,6 +9,7 @@ namespace Game
         public Entity Entity;
         public Tile Tile;
         public bool IsObstacle;
+        public bool IsBlockObstacle;
 
         public GridTile(Vector2Int position)
         {

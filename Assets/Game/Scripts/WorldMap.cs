@@ -25,6 +25,8 @@ namespace Game
         [SerializeField]
         private Sprite[] _singleObstacleSprites;
         [SerializeField]
+        private Sprite _blockObstacleSprite;
+        [SerializeField]
         private Sprite _twoSizedObstacleSpriteUpper;
 
         private Vector2Int _playerStartPosition = Vector2Int.zero;
@@ -133,7 +135,7 @@ namespace Game
 
         public bool IsTileFree(Vector2Int position)
         {
-            return _tilesMap.TryGetValue(position, out GridTile tile) && tile.Entity == null && !tile.IsObstacle;
+            return _tilesMap.TryGetValue(position, out GridTile tile) && tile.Entity == null && !tile.IsObstacle && !tile.IsBlockObstacle;
         }
 
         public bool IsTileFree(GridTile tile)
@@ -141,13 +143,39 @@ namespace Game
             return IsTileFree(tile.Position);
         }
 
-        public bool CanPlayerGoTo(Vector2Int position)
+        public bool CanPlayerGoTo(Vector2Int initialPos, Vector2Int position)
         {
-            return _tilesMap.TryGetValue(position, out GridTile tile) && !tile.IsObstacle && (tile.Entity == null
-                                                                                              || tile.Entity.TryGetComponent(out ChargePickup _)
-                                                                                              || tile.Entity.TryGetComponent(out Signal _)
-                                                                                              || tile.Entity.TryGetComponent(out Enemy _)
-                                                                                              || tile.Entity.TryGetComponent(out EnemyDamageRange _));
+            return _tilesMap.TryGetValue(position, out GridTile tile) && !tile.IsObstacle && !tile.IsBlockObstacle && (tile.Entity == null
+                       || tile.Entity.TryGetComponent(out ChargePickup _)
+                       || tile.Entity.TryGetComponent(out Signal _)
+                       || tile.Entity.TryGetComponent(out Enemy _)
+                       || tile.Entity.TryGetComponent(out EnemyDamageRange _))
+                   && HasNoBlocksOnPath(position - initialPos, initialPos);
+        }
+
+        private bool HasNoBlocksOnPath(Vector2Int distance, Vector2Int initialTilePos)
+        {
+            if (GlobalSettingsProvider.Instance.Settings.CanPassThroughBlockObstacles)
+            {
+                return true;
+            }
+
+            var direction = new Vector2Int((int)(distance.x / distance.magnitude), (int)(distance.y / distance.magnitude));
+
+            for (var i = 1; i < distance.magnitude; i++)
+            {
+                Vector2Int tilePos = initialTilePos + direction * i;
+                GridTile intermediateTile = GetTileOrNull(tilePos);
+                bool hasBlock = intermediateTile != null && intermediateTile.IsBlockObstacle;
+                Debug.Log($"Checking block obstacles on cell {tilePos} : {hasBlock}");
+                
+                if (hasBlock)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public Vector2 GetTilePosition(Vector2Int position)
@@ -225,10 +253,12 @@ namespace Game
             // 1. Вычисляем количество
             int totalCells = Size.x * Size.y;
             int singleCount = totalCells / GlobalSettingsProvider.Instance.Settings._singleSizedObstacleSizeFraction;
+            int singleBlockCount = totalCells / GlobalSettingsProvider.Instance.Settings.BlockObstaclesSizeFraction;
             int doubleCount = totalCells / GlobalSettingsProvider.Instance.Settings._twoSizedObstacleSizeFraction;
-            Debug.Log($"Single obstacle count: {singleCount}, Double obstacle count: {doubleCount}");
 
-            // 2. Создаем список всех игровых координат
+            Debug.Log($"Single: {singleCount}, Blocks: {singleBlockCount}, Double: {doubleCount}");
+
+            // 2. Создаем и перемешиваем список свободных клеток (как у тебя в коде)
             List<Vector2Int> freeCells = new List<Vector2Int>();
             for (int x = 0; x < Size.x; x++)
             {
@@ -239,7 +269,7 @@ namespace Game
                 }
             }
 
-            // Перемешиваем список для рандомного спавна (Fisher-Yates shuffle)
+            // Перемешивание (Fisher-Yates)
             for (int i = 0; i < freeCells.Count; i++)
             {
                 Vector2Int temp = freeCells[i];
@@ -248,57 +278,50 @@ namespace Game
                 freeCells[randomIndex] = temp;
             }
 
-            // 3. Спавним двухклеточные препятствия
+            // 3. Спавним двойные (код без изменений)
             int spawnedDouble = 0;
-// Используем while, так как индекс i будем контролировать вручную
             int ind = freeCells.Count - 1;
-
             while (ind >= 0
                    && spawnedDouble < doubleCount)
             {
-                // На всякий случай проверяем, не стал ли i больше текущего размера после удаления соседа
                 if (ind >= freeCells.Count)
                 {
                     ind = freeCells.Count - 1;
                     continue;
                 }
-
                 Vector2Int pos = freeCells[ind];
                 bool isVertical = Random.value > 0.5f;
                 Vector2Int neighborPos = isVertical
                     ? pos + Vector2Int.up
                     : pos + Vector2Int.right;
 
-                // Проверяем, что сосед в списке (значит он свободен и в границах)
                 if (freeCells.Contains(neighborPos))
                 {
                     PlaceDoubleObstacle(pos, neighborPos, isVertical);
-
-                    // Удаляем сначала соседа, потом текущий элемент
                     freeCells.Remove(neighborPos);
                     freeCells.RemoveAt(freeCells.IndexOf(pos));
-
                     spawnedDouble++;
-                    // После удаления двух элементов пересчитываем индекс i
                     ind = freeCells.Count - 1;
                 }
-                else
-                {
-                    // Если соседа нет, просто переходим к следующей клетке
-                    ind--;
-                }
+                else { ind--; }
             }
 
-            // 4. Спавним одноклеточные препятствия
+            // 4. Спавним одиночные препятствия (IsObstacle = true)
             int spawnedSingle = 0;
-
             for (int i = freeCells.Count - 1; i >= 0 && spawnedSingle < singleCount; i--)
             {
-                Vector2Int pos = freeCells[i];
-                PlaceSingleObstacle(pos);
-
+                PlaceSingleObstacle(freeCells[i]);
                 freeCells.RemoveAt(i);
                 spawnedSingle++;
+            }
+
+            // 5. НОВОЕ: Спавним блоки (IsObstacle = false, IsBlockObstacle = true)
+            int spawnedBlocks = 0;
+            for (int i = freeCells.Count - 1; i >= 0 && spawnedBlocks < singleBlockCount; i--)
+            {
+                PlaceBlockObstacle(freeCells[i]);
+                freeCells.RemoveAt(i);
+                spawnedBlocks++;
             }
         }
 
@@ -326,6 +349,32 @@ namespace Game
 
                 // ВАЖНО: Обновляем ссылку в словаре, чтобы она указывала на текущий тайл на карте
                 gridTile.Tile = obstacleTile;
+            }
+        }
+
+        private void PlaceBlockObstacle(Vector2Int pos)
+        {
+            // 1. Создаем тайл для блока
+            Tile blockTile = ScriptableObject.CreateInstance<Tile>();
+            blockTile.sprite = _blockObstacleSprite; // Твой новый спрайт
+
+            // 2. Шахматная раскраска (чтобы блок вписывался в сетку)
+            blockTile.color = (pos.x + pos.y) % 2 == 0
+                ? Color.white
+                : _blackTileColor;
+
+            Vector3Int tilePos = new Vector3Int(pos.x, pos.y, 0);
+
+            // 3. Устанавливаем на карту
+            _tilemap.SetTile(tilePos, blockTile);
+
+            // 4. Записываем логику в GridTile
+            if (_tilesMap.ContainsKey(pos))
+            {
+                GridTile gridTile = _tilesMap[pos];
+                gridTile.IsObstacle = false; // Как ты и просил
+                gridTile.IsBlockObstacle = true; // Помечаем как блок
+                gridTile.Tile = blockTile; // Обновляем ссылку
             }
         }
 

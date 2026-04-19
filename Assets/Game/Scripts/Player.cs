@@ -58,11 +58,10 @@ namespace Game
             Vector2Int distance = direction * Speed;
             Vector2Int newTile = PlayerGridTile.Position + distance;
 
-            if (!WorldMap.Instance.CanPlayerGoTo(newTile))
+            if (!WorldMap.Instance.CanPlayerGoTo(_playerGridTile.Position, newTile))
                 return;
 
             Vector2 tilePosition = WorldMap.Instance.GetTilePosition(newTile);
-            Speed = SpeedCycle.Speeds[++_currentSpeedIndex % SpeedCycle.Speeds.Length];
             PlayerGridTile = WorldMap.Instance.GetTileOrNull(newTile);
             DestroyExistingGlows();
             _animator.SetTrigger("MoveLeft");
@@ -74,9 +73,10 @@ namespace Game
 
             PlayerController.Instance.Enable();
             Charge--;
-            UpdatePossibleCellsGlow();
-            ProcessIntermediateTilesEntities(direction, distance, initialTilePos);
+            ProcessIntermediateTilesEntities(direction, initialTilePos);
             ProcessEndTileEntities();
+            Speed = SpeedCycle.Speeds[++_currentSpeedIndex % SpeedCycle.Speeds.Length];
+            UpdatePossibleCellsGlow();
 
             if (Charge <= 0)
             {
@@ -86,19 +86,28 @@ namespace Game
             WorldMap.Instance.SwapEntityTile(Entity, newTile);
         }
 
-        private void ProcessIntermediateTilesEntities(Vector2Int direction, Vector2Int distance, Vector2Int initialTilePos)
+        private void ProcessIntermediateTilesEntities(Vector2Int direction, Vector2Int initialTilePos)
         {
             if (Speed <= 1)
                 return;
 
-            for (var i = 1; i < distance.magnitude; i++)
+            for (var i = 1; i <= Speed - 1; i++)
             {
                 GridTile intermediateTile = WorldMap.Instance.GetTileOrNull(initialTilePos + direction * i);
 
-                if (intermediateTile.HasEntity()
-                    && intermediateTile.Entity.TryGetComponent(out Enemy enemy))
+                if (intermediateTile.HasEntity())
                 {
-                    EnemySystem.Instance.KillEnemy(enemy);
+                    bool hasEnemy = intermediateTile.Entity.TryGetComponent(out Enemy enemy);
+                    Debug.Log($"Checking enemies on  {intermediateTile.Position} : {hasEnemy}");
+                    if (hasEnemy)
+                    {
+                        EnemySystem.Instance.KillEnemy(enemy);
+                    }
+                    else if (GlobalSettingsProvider.Instance.Settings.ConsumeChargePickupsOnTraverse
+                             && intermediateTile.Entity.TryGetComponent(out ChargePickup chargePickup))
+                    {
+                        ChargePickupSystem.Instance.ConsumePickup(chargePickup);
+                    }
                 }
             }
         }
@@ -171,7 +180,7 @@ namespace Game
             foreach (Vector2Int direction in directions)
             {
                 Vector2Int tile = PlayerGridTile.Position + direction * Speed;
-                if (WorldMap.Instance.CanPlayerGoTo(tile))
+                if (WorldMap.Instance.CanPlayerGoTo(_playerGridTile.Position, tile))
                 {
                     GameObject glow = Instantiate(_possibleCellGlowPrefab, WorldMap.Instance.GetTilePosition(tile), Quaternion.identity, transform);
                     _glows.Add(glow);

@@ -30,6 +30,7 @@ namespace Game
 
         public async Awaitable KillEnemy(Enemy enemy)
         {
+            Debug.Log($"<color=green>Kill enemy {enemy.gameObject.name}</color>");
             await enemy.Die();
             _enemies.Remove(enemy);
             WorldMap.Instance.RemoveEntity(enemy.Entity);

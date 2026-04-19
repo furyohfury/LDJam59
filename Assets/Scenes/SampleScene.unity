@@ -1799,7 +1799,7 @@ MonoBehaviour:
   _borderStraightSprite: {fileID: -902604214, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
   _singleObstacleSprites:
   - {fileID: -892314186, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
-  - {fileID: -5472014980547197028, guid: 19cbc74e01a0e98419f403f1eb72c111, type: 3}
+  _blockObstacleSprite: {fileID: -5472014980547197028, guid: 19cbc74e01a0e98419f403f1eb72c111, type: 3}
   _twoSizedObstacleSpriteUpper: {fileID: -1815883587, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
 --- !u!1 &1744802239
 GameObject:
