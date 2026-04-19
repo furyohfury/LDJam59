@@ -14,16 +14,7 @@ namespace Game
 
         public void SpawnChargePickups(int amount, Vector2Int chargePickupsBorders)
         {
-            HashSet<GridTile> freeTiles = new HashSet<GridTile>();
-            List<GridTile> tiles = WorldMap.Instance.Tiles;
-
-            foreach (var tile in tiles)
-            {
-                if (WorldMap.Instance.IsTileFree(tile))
-                {
-                    freeTiles.Add(tile);
-                }
-            }
+            HashSet<GridTile> freeTiles = WorldMap.Instance.GetFreeTiles();
 
             for (var i = 0; i < Mathf.Min(amount, freeTiles.Count); i++)
             {
@@ -41,6 +32,7 @@ namespace Game
 
         public void ConsumePickup(ChargePickup chargePickup)
         {
+            WorldMap.Instance.RemoveEntity(chargePickup.Entity);
             Player.Instance.Charge += chargePickup.Charge;
             _chargePickups.Remove(chargePickup);
             Destroy(chargePickup.gameObject);

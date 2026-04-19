@@ -19,8 +19,9 @@ namespace Game
         private Vector2Int _playerStartPosition = Vector2Int.zero;
         private readonly Dictionary<Vector2Int, GridTile> _tilesMap = new Dictionary<Vector2Int, GridTile>();
 
-        public void Init()
+        public void Init(Vector2Int size)
         {
+            Size = size;
             _tilemap.size = new Vector3Int(Size.x, Size.y, 1);
 
             for (int i = 0; i < Size.x; i++)
@@ -57,7 +58,11 @@ namespace Game
 
         public bool CanPlayerGoTo(Vector2Int position)
         {
-            return _tilesMap.TryGetValue(position, out GridTile tile) && (tile.Entity == null || tile.Entity.TryGetComponent(out ChargePickup _));
+            return _tilesMap.TryGetValue(position, out GridTile tile) && (tile.Entity == null
+                                                                          || tile.Entity.TryGetComponent(out ChargePickup _)
+                                                                          || tile.Entity.TryGetComponent(out Signal _)
+                                                                          || tile.Entity.TryGetComponent(out Enemy _)
+                                                                          || tile.Entity.TryGetComponent(out EnemyDamageRange _));
         }
 
         public Vector2 GetTilePosition(Vector2Int position)
@@ -67,9 +72,14 @@ namespace Game
             return new Vector2(worldPos.x, worldPos.y);
         }
 
-        public GridTile GetTile(Vector2Int position)
+        public Vector2 GetTilePosition(GridTile tile)
         {
-            return _tilesMap[position];
+            return GetTilePosition(tile.Position);
+        }
+
+        public GridTile GetTileOrNull(Vector2Int position)
+        {
+            return _tilesMap.GetValueOrDefault(position);
         }
 
         public void SwapEntityTile(Entity entity, Vector2Int position)
@@ -83,6 +93,46 @@ namespace Game
             }
 
             _tilesMap[position].Entity = entity;
+        }
+
+        public void RemoveEntity(Entity entity)
+        {
+            foreach (var tile in _tilesMap.Values)
+            {
+                if (tile.Entity == entity)
+                {
+                    tile.Entity = null;
+                }
+            }
+        }
+
+        public HashSet<GridTile> GetFreeTiles()
+        {
+            HashSet<GridTile> freeTiles = new HashSet<GridTile>();
+            List<GridTile> tiles = Tiles;
+
+            foreach (var tile in tiles)
+            {
+                if (IsTileFree(tile))
+                {
+                    freeTiles.Add(tile);
+                }
+            }
+
+            return freeTiles;
+        }
+
+        public GridTile GetEntityTile(Entity entity)
+        {
+            foreach (GridTile tile in _tilesMap.Values)
+            {
+                if (tile.Entity == entity)
+                {
+                    return tile;
+                }
+            }
+
+            return null;
         }
     }
 }

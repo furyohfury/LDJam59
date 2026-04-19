@@ -14,7 +14,7 @@ namespace Game
         {
             Player player = Instantiate(_prefab, _container);
             Vector2Int startPosition = WorldMap.Instance.PlayerStartPosition;
-            GridTile tile = WorldMap.Instance.GetTile(startPosition);
+            GridTile tile = WorldMap.Instance.GetTileOrNull(startPosition);
             tile.Entity = player.Entity;
             player.transform.position = WorldMap.Instance.GetTilePosition(startPosition);
             player.Init(tile);

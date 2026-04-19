@@ -8,29 +8,18 @@ namespace Game
     {
         [SerializeField]
         private Enemy[] _enemiesPrefabs;
-        [SerializeField]
-        private int _startNumber = 2;
         private readonly HashSet<Enemy> _enemies = new HashSet<Enemy>();
         [SerializeField]
         private Transform _container;
 
-        public void Init()
+        public void Init(int enemiesCount)
         {
-            SpawnEnemies(_startNumber);
+            SpawnEnemies(enemiesCount);
         }
 
         private void SpawnEnemies(float enemiesCount)
         {
-            HashSet<GridTile> freeTiles = new HashSet<GridTile>();
-            List<GridTile> tiles = WorldMap.Instance.Tiles;
-
-            foreach (var tile in tiles)
-            {
-                if (WorldMap.Instance.IsTileFree(tile))
-                {
-                    freeTiles.Add(tile);
-                }
-            }
+            HashSet<GridTile> freeTiles = WorldMap.Instance.GetFreeTiles();
 
             for (var i = 0; i < Mathf.Min(enemiesCount, freeTiles.Count); i++)
             {
@@ -40,7 +29,15 @@ namespace Game
                 randomTile.Entity = enemy.Entity;
                 _enemies.Add(enemy);
                 freeTiles.Remove(randomTile);
+                enemy.Init();
             }
+        }
+
+        public void KillEnemy(Enemy enemy)
+        {
+            _enemies.Remove(enemy);
+            WorldMap.Instance.RemoveEntity(enemy.Entity);
+            Destroy(enemy.gameObject);
         }
     }
 }
