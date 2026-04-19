@@ -19,6 +19,12 @@ namespace Game
             StartNextRound();
         }
 
+        public void StartRound(int index)
+        {
+            _index = index;
+            StartNextRound();
+        }
+
         private void StartNextRound()
         {
             RoundData roundData = _rounds[_index++ % _rounds.Length];
