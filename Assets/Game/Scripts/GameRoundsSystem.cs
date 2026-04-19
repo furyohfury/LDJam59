@@ -27,7 +27,7 @@ namespace Game
 
         private void StartNextRound()
         {
-            RoundData roundData = _rounds[_index++ % _rounds.Length];
+            RoundData roundData = _rounds[Mathf.Min(_index++, _rounds.Length - 1)];
             EnemySystem.Instance.SpawnEnemies(roundData.EnemiesSpawnNumber);
             ChargePickupSystem.Instance.SpawnChargePickups(roundData.ChargePickupsCount, roundData.ChargePickupsValue);
             SignalSystem.Instance.SpawnSignal(roundData.MinimalSignalDistanceFromPlayer);

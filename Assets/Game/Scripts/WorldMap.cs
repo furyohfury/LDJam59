@@ -12,11 +12,7 @@ namespace Game
         public Vector2Int PlayerStartPosition { get => _playerStartPosition; set => _playerStartPosition = value; }
         public Vector3 AnchorSize => _tilemap.tileAnchor;
         [Header("Params")]
-        public Vector2Int Size = new Vector2Int(5, 5);
-        [Tooltip("Число на которое делится количество клеток сетки чтобы получить количество одноклеточных препятствий")] [SerializeField]
-        private int _singleSizedObstacleSizeFraction = 20;
-        [Tooltip("Число на которое делится количество клеток сетки чтобы получить количество двухклеточных препятствий")] [SerializeField]
-        private int _twoSizedObstacleSizeFraction = 30;
+        public Vector2Int Size { get; private set; } = new Vector2Int(5, 5);
         [Header("References")]
         [SerializeField]
         private Tilemap _tilemap;
@@ -228,8 +224,8 @@ namespace Game
         {
             // 1. Вычисляем количество
             int totalCells = Size.x * Size.y;
-            int singleCount = totalCells / _singleSizedObstacleSizeFraction;
-            int doubleCount = totalCells / _twoSizedObstacleSizeFraction;
+            int singleCount = totalCells / GlobalSettingsProvider.Instance.Settings._singleSizedObstacleSizeFraction;
+            int doubleCount = totalCells / GlobalSettingsProvider.Instance.Settings._twoSizedObstacleSizeFraction;
             Debug.Log($"Single obstacle count: {singleCount}, Double obstacle count: {doubleCount}");
 
             // 2. Создаем список всех игровых координат

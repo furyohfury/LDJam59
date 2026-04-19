@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy
   Entity: {fileID: 7777419442094464803}
-  Damage: 0
+  Damage: 1
   _animator: {fileID: 1335536550893940975}
   _damageRange: []
   _damageRangePrefab: {fileID: 6455515453981257185, guid: 896cbaf60717d9c46946bea887eafadd, type: 3}

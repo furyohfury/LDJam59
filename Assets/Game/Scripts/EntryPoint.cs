@@ -4,12 +4,11 @@ namespace Game
 {
     public sealed class EntryPoint : MonoBehaviour
     {
-        public Vector2Int MapSize = new Vector2Int(15, 15);
         public int StartRoundIndex = 0;
 
         private void Start()
         {
-            WorldMap.Instance.Init(MapSize);
+            WorldMap.Instance.Init(GlobalSettingsProvider.Instance.Settings.MapSize);
             PlayerSpawner.Instance.Spawn();
             Player.Instance.UpdatePossibleCellsGlow();
             PlayerDeathObserver.Instance.Init();

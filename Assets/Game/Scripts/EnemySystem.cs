@@ -28,11 +28,14 @@ namespace Game
             }
         }
 
-        public void KillEnemy(Enemy enemy)
+        public async Awaitable KillEnemy(Enemy enemy)
         {
+            await enemy.Die();
             _enemies.Remove(enemy);
             WorldMap.Instance.RemoveEntity(enemy.Entity);
             Destroy(enemy.gameObject);
+            PlayerScore.Instance.CountEnemyKill();
+            Player.Instance.Charge += GlobalSettingsProvider.Instance.Settings.KillEnemyChargeBonus;
         }
     }
 }

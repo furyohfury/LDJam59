@@ -9,7 +9,7 @@ namespace Game
     public sealed class SignalSystem : Singleton<SignalSystem>
     {
         public event Action OnSignalConsumed;
-        
+
         [SerializeField]
         private Signal _prefab;
         [SerializeField]
@@ -46,7 +46,9 @@ namespace Game
             WorldMap.Instance.RemoveEntity(signal.Entity);
             Destroy(signal.gameObject);
             _activeSignal = null;
-            
+            PlayerScore.Instance.CountPickUpSignalBounty();
+            Player.Instance.Charge += GlobalSettingsProvider.Instance.Settings.SignalPickupChargeBonus;
+
             OnSignalConsumed?.Invoke();
         }
     }

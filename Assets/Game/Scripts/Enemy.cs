@@ -51,7 +51,6 @@ namespace Game
             }
 
             _damageRanges.Clear();
-            EnemySystem.Instance.KillEnemy(this);
         }
     }
 }

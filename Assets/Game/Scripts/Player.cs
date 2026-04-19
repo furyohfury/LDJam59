@@ -49,6 +49,7 @@ namespace Game
             Speed = SpeedCycle.Speeds[0];
             PlayerGridTile = tile;
             UpdatePossibleCellsGlow();
+            Charge = GlobalSettingsProvider.Instance.Settings.PlayerInitialCharge;
         }
 
         public async Awaitable Move(Vector2Int direction)
@@ -97,7 +98,7 @@ namespace Game
                 if (intermediateTile.HasEntity()
                     && intermediateTile.Entity.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.Die();
+                    EnemySystem.Instance.KillEnemy(enemy);
                 }
             }
         }
@@ -123,7 +124,7 @@ namespace Game
                 {
                     int damage = enemy.Damage;
                     TakeDamage(damage);
-                    enemy.Die();
+                    EnemySystem.Instance.KillEnemy(enemy);
                 }
             }
         }
