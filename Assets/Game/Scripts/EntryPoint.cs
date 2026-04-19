@@ -14,6 +14,7 @@ namespace Game
             PlayerDeathObserver.Instance.Init();
             PlayerChargeUI.Instance.Init();
             CameraPositioner.Instance.Init();
+            PlayerScoreUI.Instance.Init();
 
             GameRoundsSystem.Instance.Init();
 
