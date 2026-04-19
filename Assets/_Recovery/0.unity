@@ -1638,14 +1638,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.WorldMap
   Size: {x: 9, y: 9}
-  _singleSizedObstacleSizeFraction: 20
-  _twoSizedObstacleSizeFraction: 25
+  _singleSizedObstacleSizeFraction: 12
+  _twoSizedObstacleSizeFraction: 17
   _tilemap: {fileID: 968772268}
   _emptyTileSpriteWhite: {fileID: 780175380, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
   _blackTileColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _borderStraightSprite: {fileID: -902604214, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
   _singleObstacleSprite: {fileID: -892314186, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
   _twoSizedObstacleSpriteUpper: {fileID: -1815883587, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
+  _twoSizedObstacleSpriteLower: {fileID: 821927242, guid: 31a29893e20c2d144ad52b0699e41f44, type: 3}
 --- !u!1 &1744802239
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ namespace Game
         public readonly Vector2Int Position;
         public Entity Entity;
         public Tile Tile;
+        public bool IsObstacle;
 
         public GridTile(Vector2Int position)
         {

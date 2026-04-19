@@ -26,7 +26,7 @@ namespace Game
         [SerializeField]
         private GameObject _possibleCellGlowPrefab;
         [SerializeField]
-        private int _charge = 10;
+        private int _charge = 20;
         [SerializeField]
         private Animator _animator;
         [SerializeField]
