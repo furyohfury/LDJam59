@@ -210,7 +210,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -695,7 +695,7 @@ TextureImporter:
       name: atlas_01_00000_19
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 160
         width: 32
         height: 32
@@ -717,7 +717,7 @@ TextureImporter:
       name: atlas_01_00000_20
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 160
         width: 32
         height: 32
@@ -739,7 +739,7 @@ TextureImporter:
       name: atlas_01_00000_21
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 160
         width: 32
         height: 32
@@ -761,7 +761,7 @@ TextureImporter:
       name: atlas_01_00000_22
       rect:
         serializedVersion: 2
-        x: 192
+        x: 224
         y: 160
         width: 32
         height: 32
@@ -783,8 +783,8 @@ TextureImporter:
       name: atlas_01_00000_23
       rect:
         serializedVersion: 2
-        x: 224
-        y: 160
+        x: 0
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -805,7 +805,7 @@ TextureImporter:
       name: atlas_01_00000_24
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 128
         width: 32
         height: 32
@@ -827,7 +827,7 @@ TextureImporter:
       name: atlas_01_00000_25
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 128
         width: 32
         height: 32
@@ -849,7 +849,7 @@ TextureImporter:
       name: atlas_01_00000_26
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 128
         width: 32
         height: 32
@@ -871,7 +871,7 @@ TextureImporter:
       name: atlas_01_00000_27
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 128
         width: 32
         height: 32
@@ -893,7 +893,7 @@ TextureImporter:
       name: atlas_01_00000_28
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 128
         width: 32
         height: 32
@@ -915,7 +915,7 @@ TextureImporter:
       name: atlas_01_00000_29
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 128
         width: 32
         height: 32
@@ -937,7 +937,7 @@ TextureImporter:
       name: atlas_01_00000_30
       rect:
         serializedVersion: 2
-        x: 192
+        x: 224
         y: 128
         width: 32
         height: 32
@@ -959,8 +959,8 @@ TextureImporter:
       name: atlas_01_00000_31
       rect:
         serializedVersion: 2
-        x: 224
-        y: 128
+        x: 0
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -981,7 +981,7 @@ TextureImporter:
       name: atlas_01_00000_32
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 96
         width: 32
         height: 32
@@ -1003,7 +1003,7 @@ TextureImporter:
       name: atlas_01_00000_33
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 96
         width: 32
         height: 32
@@ -1025,7 +1025,7 @@ TextureImporter:
       name: atlas_01_00000_34
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 96
         width: 32
         height: 32
@@ -1047,7 +1047,7 @@ TextureImporter:
       name: atlas_01_00000_35
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 96
         width: 32
         height: 32
@@ -1069,7 +1069,7 @@ TextureImporter:
       name: atlas_01_00000_36
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 96
         width: 32
         height: 32
@@ -1091,7 +1091,7 @@ TextureImporter:
       name: atlas_01_00000_37
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 96
         width: 32
         height: 32
@@ -1113,7 +1113,7 @@ TextureImporter:
       name: atlas_01_00000_38
       rect:
         serializedVersion: 2
-        x: 192
+        x: 224
         y: 96
         width: 32
         height: 32
@@ -1135,8 +1135,8 @@ TextureImporter:
       name: atlas_01_00000_39
       rect:
         serializedVersion: 2
-        x: 224
-        y: 96
+        x: 0
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -1157,7 +1157,7 @@ TextureImporter:
       name: atlas_01_00000_40
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -1179,7 +1179,7 @@ TextureImporter:
       name: atlas_01_00000_41
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -1201,7 +1201,7 @@ TextureImporter:
       name: atlas_01_00000_42
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -1223,7 +1223,7 @@ TextureImporter:
       name: atlas_01_00000_43
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 64
         width: 32
         height: 32
@@ -1245,7 +1245,7 @@ TextureImporter:
       name: atlas_01_00000_44
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 64
         width: 32
         height: 32
@@ -1267,7 +1267,7 @@ TextureImporter:
       name: atlas_01_00000_45
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 64
         width: 32
         height: 32
@@ -1289,7 +1289,7 @@ TextureImporter:
       name: atlas_01_00000_46
       rect:
         serializedVersion: 2
-        x: 192
+        x: 224
         y: 64
         width: 32
         height: 32
@@ -1311,8 +1311,8 @@ TextureImporter:
       name: atlas_01_00000_47
       rect:
         serializedVersion: 2
-        x: 224
-        y: 64
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1333,7 +1333,7 @@ TextureImporter:
       name: atlas_01_00000_48
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 32
         width: 32
         height: 32
@@ -1355,7 +1355,7 @@ TextureImporter:
       name: atlas_01_00000_49
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -1377,7 +1377,7 @@ TextureImporter:
       name: atlas_01_00000_50
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -1399,7 +1399,7 @@ TextureImporter:
       name: atlas_01_00000_51
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 32
         width: 32
         height: 32
@@ -1421,8 +1421,8 @@ TextureImporter:
       name: atlas_01_00000_52
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 160
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1443,8 +1443,8 @@ TextureImporter:
       name: atlas_01_00000_53
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 192
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1465,8 +1465,8 @@ TextureImporter:
       name: atlas_01_00000_54
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 224
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1487,7 +1487,7 @@ TextureImporter:
       name: atlas_01_00000_55
       rect:
         serializedVersion: 2
-        x: 96
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -1509,7 +1509,7 @@ TextureImporter:
       name: atlas_01_00000_56
       rect:
         serializedVersion: 2
-        x: 128
+        x: 32
         y: 0
         width: 32
         height: 32
@@ -1531,7 +1531,7 @@ TextureImporter:
       name: atlas_01_00000_57
       rect:
         serializedVersion: 2
-        x: 160
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -1545,6 +1545,116 @@ TextureImporter:
       bones: []
       spriteID: 2507b8c031bdbc74bbf5ad6291e012c8
       internalID: 1094340959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas_01_00000_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d60000fcaeecbe41a7a054479f8077d
+      internalID: -892314186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas_01_00000_59
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7d7a2f22c8e116498df427c9505c35d
+      internalID: -1815883587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas_01_00000_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80f96d4a8a92dfa46a89773a46c8ad37
+      internalID: 821927242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas_01_00000_61
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4078e82ec2a50e14ca3b212c44788c74
+      internalID: 487593920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atlas_01_00000_62
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc0b36c64cac2840897e74390f31247
+      internalID: -74136888
       vertices: []
       indices: 
       edges: []
@@ -1563,7 +1673,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":8.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       atlas_01_00000_0: 581061559131341161
       atlas_01_00000_1: -7441794664792533881
@@ -1619,7 +1729,12 @@ TextureImporter:
       atlas_01_00000_55: 780175380
       atlas_01_00000_56: -902604214
       atlas_01_00000_57: 1094340959
+      atlas_01_00000_58: -892314186
+      atlas_01_00000_59: -1815883587
       atlas_01_00000_6: -7980684766387948186
+      atlas_01_00000_60: 821927242
+      atlas_01_00000_61: 487593920
+      atlas_01_00000_62: -74136888
       atlas_01_00000_7: -7595198075643461482
       atlas_01_00000_8: -7532000411969342966
       atlas_01_00000_9: 2646378776957910187
