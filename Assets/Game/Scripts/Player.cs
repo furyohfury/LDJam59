@@ -125,11 +125,24 @@ namespace Game
         private void TakeDamage(int damage)
         {
             Charge -= damage;
-            DOTween.Sequence()
-                   .Append(_spriteRenderer.DOColor(_damagedColor, _damagedAnimDuration)
-                                          .SetEase(_damagedAnimEase))
-                   .Append(_spriteRenderer.DOColor(Color.white, _damagedAnimDuration)
-                                          .SetEase(_damagedAnimEase));
+
+            if (Charge <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                DOTween.Sequence()
+                       .Append(_spriteRenderer.DOColor(_damagedColor, _damagedAnimDuration)
+                                              .SetEase(_damagedAnimEase))
+                       .Append(_spriteRenderer.DOColor(Color.white, _damagedAnimDuration)
+                                              .SetEase(_damagedAnimEase));
+            }
+        }
+
+        private void Die()
+        {
+            _animator.SetTrigger("Die");
         }
 
         public void UpdatePossibleCellsGlow()

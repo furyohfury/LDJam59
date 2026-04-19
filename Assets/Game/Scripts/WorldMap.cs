@@ -10,6 +10,7 @@ namespace Game
         public List<GridTile> Tiles => _tilesMap.Values.ToList();
         public Vector2Int PlayerStartPosition { get => _playerStartPosition; set => _playerStartPosition = value; }
         public Vector2Int Size = new Vector2Int(5, 5);
+        public Vector3 AnchorSize => _tilemap.tileAnchor;
         [SerializeField]
         private Tilemap _tilemap;
         [SerializeField]

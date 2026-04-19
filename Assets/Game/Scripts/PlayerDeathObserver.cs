@@ -14,6 +14,7 @@ namespace Game
             if (obj <= 0)
             {
                 Debug.Log("player dead");
+                PlayerController.Instance.Disable();
                 // TODO logic
             }
         }
