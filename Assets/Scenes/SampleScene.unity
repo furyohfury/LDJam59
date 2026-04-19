@@ -547,6 +547,61 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &569532916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569532917}
+  - component: {fileID: 569532918}
+  m_Layer: 0
+  m_Name: GameRoundsSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &569532917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569532916}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1063030019}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &569532918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569532916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f5b0006ca4af3a5803a81ad8f5c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.GameRoundsSystem
+  _rounds:
+  - {fileID: 11400000, guid: a5f69e3818b498b49a171afd0c715330, type: 2}
+  - {fileID: 11400000, guid: 0362e89853d15b44c9ff411658113b7f, type: 2}
+  - {fileID: 11400000, guid: 374f13647f07caf4f919142a0e423130, type: 2}
+  - {fileID: 11400000, guid: b304533b3ecc2014ca7bb54c1c0b53eb, type: 2}
+  - {fileID: 11400000, guid: 356653f1e6b30a84fbdc7e7edb890ec9, type: 2}
+  - {fileID: 11400000, guid: 64b5137e5e173034fa8f58c2a16b33cf, type: 2}
+  - {fileID: 11400000, guid: 73dfa9b6dd947ef4481bafcc5f308231, type: 2}
+  - {fileID: 11400000, guid: 0393fc56831bed941a245c4803165cae, type: 2}
+  - {fileID: 11400000, guid: ac9e884ed66ed1e4f8c4b732b316353e, type: 2}
+  - {fileID: 11400000, guid: 39f50cfca9715954380a7bdd45b1c888, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1313,7 @@ Transform:
   - {fileID: 705082488}
   - {fileID: 269031374}
   - {fileID: 1462922071}
+  - {fileID: 569532917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394725219

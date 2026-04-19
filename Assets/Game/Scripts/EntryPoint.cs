@@ -14,13 +14,13 @@ namespace Game
         {
             WorldMap.Instance.Init(MapSize);
             PlayerSpawner.Instance.Spawn();
-            EnemySystem.Instance.Init(EnemiesStartNumber);
             Player.Instance.UpdatePossibleCellsGlow();
             PlayerDeathObserver.Instance.Init();
             PlayerChargeUI.Instance.Init();
-            ChargePickupSystem.Instance.SpawnChargePickups(InitialChargePickupsCount, InitialChargePickupsRandomValue);
-            SignalSystem.Instance.SpawnSignal(MinimalSignalDistanceFromPlayer);
             CameraPositioner.Instance.Init();
+            
+            GameRoundsSystem.Instance.Init();
+            GameRoundsSystem.Instance.StartFirstWave();
         }
     }
 }

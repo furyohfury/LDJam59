@@ -132,7 +132,7 @@ MonoBehaviour:
   Speed: 2
   Entity: {fileID: 5304383310905314088}
   _speedCycle:
-    Speeds: 020000000300000004000000
+    Speeds: 010000000200000003000000
   _possibleCellGlowPrefab: {fileID: 8384539499426784225, guid: f6ae8bc11d00a9843903793f4ecbeb0a, type: 3}
   _charge: 10
   _animator: {fileID: 5156995418771787810}

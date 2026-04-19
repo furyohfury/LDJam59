@@ -12,12 +12,7 @@ namespace Game
         [SerializeField]
         private Transform _container;
 
-        public void Init(int enemiesCount)
-        {
-            SpawnEnemies(enemiesCount);
-        }
-
-        private void SpawnEnemies(float enemiesCount)
+        public void SpawnEnemies(float enemiesCount)
         {
             HashSet<GridTile> freeTiles = WorldMap.Instance.GetFreeTiles();
 

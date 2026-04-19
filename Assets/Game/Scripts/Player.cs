@@ -22,8 +22,7 @@ namespace Game
         public GridTile PlayerGridTile { get => _playerGridTile; private set => _playerGridTile = value; }
         public int Speed = 2;
         public Entity Entity;
-        [SerializeField]
-        private SpeedCycle _speedCycle;
+        public SpeedCycle SpeedCycle;
         [SerializeField]
         private GameObject _possibleCellGlowPrefab;
         [SerializeField]
@@ -47,7 +46,7 @@ namespace Game
 
         public void Init(GridTile tile)
         {
-            Speed = _speedCycle.Speeds[0];
+            Speed = SpeedCycle.Speeds[0];
             PlayerGridTile = tile;
             UpdatePossibleCellsGlow();
         }
@@ -62,7 +61,7 @@ namespace Game
                 return;
 
             Vector2 tilePosition = WorldMap.Instance.GetTilePosition(newTile);
-            Speed = _speedCycle.Speeds[++_currentSpeedIndex % _speedCycle.Speeds.Length];
+            Speed = SpeedCycle.Speeds[++_currentSpeedIndex % SpeedCycle.Speeds.Length];
             PlayerGridTile = WorldMap.Instance.GetTileOrNull(newTile);
             DestroyExistingGlows();
             _animator.SetTrigger("MoveLeft");
