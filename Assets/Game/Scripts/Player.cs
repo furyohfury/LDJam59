@@ -13,8 +13,8 @@ namespace Game
             get => _charge;
             set
             {
-                _charge = value;
-                OnChargeChanged?.Invoke(value);
+                _charge = Mathf.Max(0, value);
+                OnChargeChanged?.Invoke(_charge);
             }
         }
         public int Speed = 2;
@@ -41,7 +41,7 @@ namespace Game
             direction *= Speed;
             Vector2Int newTile = _playerGridTile.Position + direction;
 
-            if (!WorldMap.Instance.IsTileFree(newTile))
+            if (!WorldMap.Instance.CanPlayerGoTo(newTile))
                 return;
 
             Vector2 tilePosition = WorldMap.Instance.GetTilePosition(newTile);
@@ -50,6 +50,12 @@ namespace Game
             _playerGridTile = WorldMap.Instance.GetTile(newTile);
             UpdatePossibleCellsGlow();
             Charge--;
+
+            if (_playerGridTile.HasEntity()
+                && _playerGridTile.Entity.TryGetComponent(out ChargePickup chargePickup))
+            {
+                ChargePickupSystem.Instance.ConsumePickup(chargePickup);
+            }
 
             WorldMap.Instance.SwapEntityTile(Entity, newTile);
         }
@@ -73,7 +79,7 @@ namespace Game
             foreach (Vector2Int direction in directions)
             {
                 Vector2Int tile = _playerGridTile.Position + direction * Speed;
-                if (WorldMap.Instance.IsTileFree(tile))
+                if (WorldMap.Instance.CanPlayerGoTo(tile))
                 {
                     GameObject glow = Instantiate(_possibleCellGlowPrefab, WorldMap.Instance.GetTilePosition(tile), Quaternion.identity, transform);
                     _glows.Add(glow);

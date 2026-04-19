@@ -26,7 +26,10 @@ namespace Game
 
             foreach (var tile in tiles)
             {
-                freeTiles.Add(tile);
+                if (WorldMap.Instance.IsTileFree(tile))
+                {
+                    freeTiles.Add(tile);
+                }
             }
 
             for (var i = 0; i < Mathf.Min(enemiesCount, freeTiles.Count); i++)

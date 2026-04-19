@@ -50,6 +50,16 @@ namespace Game
             return _tilesMap.TryGetValue(position, out GridTile tile) && tile.Entity == null;
         }
 
+        public bool IsTileFree(GridTile tile)
+        {
+            return IsTileFree(tile.Position);
+        }
+
+        public bool CanPlayerGoTo(Vector2Int position)
+        {
+            return _tilesMap.TryGetValue(position, out GridTile tile) && (tile.Entity == null || tile.Entity.TryGetComponent(out ChargePickup _));
+        }
+
         public Vector2 GetTilePosition(Vector2Int position)
         {
             Vector3 worldPos = _tilemap.GetCellCenterWorld(new Vector3Int(position.x, position.y, 0));

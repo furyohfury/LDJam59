@@ -13,5 +13,10 @@ namespace Game
         {
             Position = position;
         }
+
+        public bool HasEntity()
+        {
+            return Entity != null;
+        }
     }
 }
