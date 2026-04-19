@@ -15,7 +15,7 @@ namespace Game
         public int KillEnemyScoreBounty = 100;
         public int PickUpSignalScoreBounty = 1000;
         public int PlayerInitialCharge = 20;
-        public int KillEnemyChargeBonus = 20;
+        public int KillEnemyChargeBonus = 5;
         public int SignalPickupChargeBonus = 20;
     }
 }
