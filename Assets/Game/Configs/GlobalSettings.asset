@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4b5f5fe83f4517a2fce06560e9a0ba, type: 3}
   m_Name: GlobalSettings
   m_EditorClassIdentifier: Assembly-CSharp::Game.GlobalSettings
+  MapSize: {x: 19, y: 11}
+  _singleSizedObstacleSizeFraction: 1000
+  BlockObstaclesSizeFraction: 1000
+  _twoSizedObstacleSizeFraction: 1000
+  KillEnemyScoreBounty: 100
+  PickUpSignalScoreBounty: 1000
+  PlayerInitialCharge: 20
+  KillEnemyChargeBonus: 0
+  SignalPickupChargeBonus: 10
+  ConsumeChargePickupsOnTraverse: 1
+  CanPassThroughBlockObstacles: 0

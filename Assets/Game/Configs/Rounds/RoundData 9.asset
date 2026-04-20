@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280cbe8c4e5e4ce3a201f2479a4d283a, type: 3}
   m_Name: RoundData 9
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoundData
-  ChargePickupsCount: 3
-  ChargePickupsValue: {x: 3, y: 5}
-  MinimalSignalDistanceFromPlayer: 5
-  EnemiesSpawnNumber: 2
+  ChargePickupsCount: 1
+  ChargePickupsValue: {x: 5, y: 5}
+  MinimalSignalDistanceFromPlayer: 9
+  EnemiesSpawnNumber: 5
+  PlayerSpeedCycle: 020000000300000004000000

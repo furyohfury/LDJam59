@@ -61,8 +61,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -4176907224271093295, guid: 93cad56ec98728b4e832a85885825960, type: 3}
     - target: {fileID: 6655630539764902813, guid: c3083d31a2cd77e4d96458a9a4cc2015, type: 3}
+      propertyPath: Damage
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655630539764902813, guid: c3083d31a2cd77e4d96458a9a4cc2015, type: 3}
       propertyPath: _damageRange.Array.size
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6655630539764902813, guid: c3083d31a2cd77e4d96458a9a4cc2015, type: 3}
       propertyPath: _damageRange.Array.data[0].x
