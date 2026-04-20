@@ -111,6 +111,7 @@ namespace Game
             float duration = Speed / _visualMoveSpeed;
             transform.DOMove(tilePosition, duration).SetEase(_moveEase, _moveOverShoot);
             _audioSource.clip = _moveClip;
+            _audioSource.volume = VFXManager.Instance.Volume;
             _audioSource.Play();
             PlayerController.Instance.Disable();
 
@@ -199,6 +200,7 @@ namespace Game
             else
             {
                 _audioSource.clip = _takeDamageClips.GetRandom();
+                _audioSource.volume = VFXManager.Instance.Volume;
                 _audioSource.Play();
                 DOTween.Sequence()
                        .Append(_spriteRenderer.DOColor(_damagedColor, _damagedAnimDuration).SetEase(_damagedAnimEase))
@@ -221,6 +223,7 @@ namespace Game
         private void PlayDeathSFX()
         {
             _audioSource.clip = _deathClip;
+            _audioSource.volume = VFXManager.Instance.Volume;
             _audioSource.Play();
         }
 

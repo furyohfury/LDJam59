@@ -42,7 +42,9 @@ namespace Game
 
         public async Awaitable Die()
         {
-            _audioSource.PlayOneShot(_deathClip);
+            _audioSource.clip = _deathClip;
+            _audioSource.volume = VFXManager.Instance.Volume;
+            _audioSource.Play();
             _animator.SetTrigger("Die");
             float length = _animator.GetCurrentAnimatorStateInfo(0).length;
 

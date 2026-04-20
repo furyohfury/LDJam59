@@ -1,9 +1,20 @@
-﻿using UnityEngine;
+﻿using TriInspector;
+using UnityEngine;
 
 namespace Game
 {
     public sealed class VFXManager : Singleton<VFXManager>
     {
+        public float Volume
+        {
+            get => _volume;
+            set
+            {
+                _volume = value;
+                _bgMusicSource.volume = _volume * _bgMusicVolumeMult;
+                _uiAudioSource.volume = _volume;
+            }
+        }
         [SerializeField]
         private GameObject _chargePickupVFX;
         [SerializeField]
@@ -14,11 +25,21 @@ namespace Game
         private AudioSource _uiAudioSource;
         [SerializeField]
         private AudioClip _uiClickSound;
+        [SerializeField]
+        [Range(0, 1f)]
+#if UNITY_EDITOR
+        [OnValueChanged(nameof(OnVolumeChanged))]
+        private float _volume = 1f;
+#endif
+        [SerializeField]
+        private float _bgMusicVolumeMult = 0.25f;
 
         protected override void Awake()
         {
             base.Awake();
             DontDestroyOnLoad(gameObject);
+            _bgMusicSource.volume = _volume * _bgMusicVolumeMult;
+            _uiAudioSource.volume = _volume;
         }
 
         public GameObject SpawnChargePickupVFX(Vector3 position)
@@ -35,5 +56,12 @@ namespace Game
         {
             _uiAudioSource.PlayOneShot(_uiClickSound);
         }
+
+#if UNITY_EDITOR
+        private void OnVolumeChanged()
+        {
+            Volume = _volume;
+        }
+#endif
     }
 }
