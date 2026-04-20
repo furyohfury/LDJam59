@@ -34,6 +34,7 @@ namespace Game
             Player.Instance.SetSpeedCycle(roundData.PlayerSpeedCycle);
             Player.Instance.Speed = Player.Instance.SpeedCycle.Speeds[0];
             Player.Instance.UpdatePossibleCellsGlow();
+            SpeedSelectorUI.Instance.Init(Player.Instance.SpeedCycle.Speeds);
         }
 
         private void OnSignalConsumed()

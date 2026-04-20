@@ -114,6 +114,7 @@ namespace Game
             _audioSource.volume = VFXManager.Instance.Volume;
             _audioSource.Play();
             PlayerController.Instance.Disable();
+            SpeedSelectorUI.Instance.NextValue();
 
             await Awaitable.WaitForSecondsAsync(duration);
 
