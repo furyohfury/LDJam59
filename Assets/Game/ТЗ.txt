@@ -1,7 +1,3 @@
 звук ui click
-ui цикла скоростей
 menu
-ui gameover to menu
 volumeslider
-прогресс бар заряда
-анимация шлейфа игрока

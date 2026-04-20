@@ -16,6 +16,9 @@ namespace Game
         public void StartFirstWave()
         {
             _index = 0;
+            Player.Instance.SetSpeedCycle(_rounds[0].PlayerSpeedCycle);
+            Player.Instance.Speed = Player.Instance.SpeedCycle.Speeds[0];
+            SpeedSelectorUI.Instance.Init(Player.Instance.SpeedCycle.Speeds);
             StartNextRound();
         }
 
@@ -31,10 +34,7 @@ namespace Game
             EnemySystem.Instance.SpawnEnemies(roundData.EnemiesSpawnNumber);
             ChargePickupSystem.Instance.SpawnChargePickups(roundData.ChargePickupsCount, roundData.ChargePickupsValue);
             SignalSystem.Instance.SpawnSignal(roundData.MinimalSignalDistanceFromPlayer);
-            Player.Instance.SetSpeedCycle(roundData.PlayerSpeedCycle);
-            Player.Instance.Speed = Player.Instance.SpeedCycle.Speeds[0];
             Player.Instance.UpdatePossibleCellsGlow();
-            SpeedSelectorUI.Instance.Init(Player.Instance.SpeedCycle.Speeds);
         }
 
         private void OnSignalConsumed()
