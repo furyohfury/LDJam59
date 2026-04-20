@@ -19,20 +19,22 @@ namespace Game
                 OnChargeChanged?.Invoke(_charge);
             }
         }
-        public GridTile PlayerGridTile { get => _playerGridTile; private set => _playerGridTile = value; }
+        public GridTile PlayerGridTile
+        {
+            get => _playerGridTile;
+            private set => _playerGridTile = value;
+        }
+        [Header("Params")]
         public int Speed = 2;
-        public Entity Entity;
         public SpeedCycle SpeedCycle;
         [SerializeField]
-        private GameObject _possibleCellGlowPrefab;
+        private float _visualMoveSpeed = 1f;
         [SerializeField]
         private int _charge = 20;
         [SerializeField]
-        private Animator _animator;
-        [SerializeField]
         private Ease _moveEase = Ease.Linear;
         [SerializeField]
-        private SpriteRenderer _spriteRenderer;
+        private float _moveOverShoot = 1.7058f;
         [SerializeField]
         private Color _damagedColor = Color.red;
         [SerializeField]
@@ -40,9 +42,38 @@ namespace Game
         [SerializeField]
         private Ease _damagedAnimEase = Ease.OutQuint;
 
+        [Header("Refs")]
+        public Entity Entity;
+        [SerializeField]
+        private GameObject _possibleCellGlowPrefab;
+        [SerializeField]
+        private Animator _animator;
+        [SerializeField]
+        private SpriteRenderer _spriteRenderer;
+
         private GridTile _playerGridTile = new GridTile(Vector2Int.zero);
         private int _currentSpeedIndex;
         private readonly List<GameObject> _glows = new List<GameObject>();
+        private static readonly int MoveLeft = Animator.StringToHash("Left");
+        private static readonly int MoveRight = Animator.StringToHash("Right");
+        private static readonly int MoveUp = Animator.StringToHash("Up");
+        private static readonly int MoveDown = Animator.StringToHash("Down");
+        private static readonly int Idle = Animator.StringToHash("Idle");
+        private readonly Dictionary<Vector2Int, int> _animatorKeys = new Dictionary<Vector2Int, int>
+                                                                     {
+                                                                         {
+                                                                             new Vector2Int(-1, 0), MoveLeft
+                                                                         },
+                                                                         {
+                                                                             new Vector2Int(1, 0), MoveRight
+                                                                         },
+                                                                         {
+                                                                             new Vector2Int(0, -1), MoveDown
+                                                                         },
+                                                                         {
+                                                                             new Vector2Int(0, 1), MoveUp
+                                                                         }
+                                                                     };
 
         public void Init(GridTile tile)
         {
@@ -64,9 +95,10 @@ namespace Game
             Vector2 tilePosition = WorldMap.Instance.GetTilePosition(newTile);
             PlayerGridTile = WorldMap.Instance.GetTileOrNull(newTile);
             DestroyExistingGlows();
-            _animator.SetTrigger("MoveLeft");
-            float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
-            transform.DOMove(tilePosition, duration).SetEase(_moveEase);
+            int animationKey = _animatorKeys[direction];
+            _animator.SetTrigger(animationKey);
+            float duration = Speed / _visualMoveSpeed;
+            transform.DOMove(tilePosition, duration).SetEase(_moveEase, _moveOverShoot);
             PlayerController.Instance.Disable();
 
             await Awaitable.WaitForSecondsAsync(duration);
@@ -81,6 +113,10 @@ namespace Game
             if (Charge <= 0)
             {
                 Discharge();
+            }
+            else
+            {
+                _animator.SetTrigger(Idle);
             }
 
             WorldMap.Instance.SwapEntityTile(Entity, newTile);
@@ -150,10 +186,8 @@ namespace Game
             else
             {
                 DOTween.Sequence()
-                       .Append(_spriteRenderer.DOColor(_damagedColor, _damagedAnimDuration)
-                                              .SetEase(_damagedAnimEase))
-                       .Append(_spriteRenderer.DOColor(Color.white, _damagedAnimDuration)
-                                              .SetEase(_damagedAnimEase));
+                       .Append(_spriteRenderer.DOColor(_damagedColor, _damagedAnimDuration).SetEase(_damagedAnimEase))
+                       .Append(_spriteRenderer.DOColor(Color.white, _damagedAnimDuration).SetEase(_damagedAnimEase));
             }
         }
 
@@ -171,8 +205,8 @@ namespace Game
         {
             var directions = new Vector2Int[]
                              {
-                                 new Vector2Int(0, 1), new Vector2Int(0, -1)
-                                 , new Vector2Int(1, 0), new Vector2Int(-1, 0)
+                                 new Vector2Int(0, 1), new Vector2Int(0, -1),
+                                 new Vector2Int(1, 0), new Vector2Int(-1, 0)
                              };
 
             DestroyExistingGlows();

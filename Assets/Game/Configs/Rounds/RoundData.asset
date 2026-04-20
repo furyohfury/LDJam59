@@ -16,3 +16,4 @@ MonoBehaviour:
   ChargePickupsValue: {x: 3, y: 5}
   MinimalSignalDistanceFromPlayer: 5
   EnemiesSpawnNumber: 2
+  PlayerSpeedCycle: 010000000200000003000000
