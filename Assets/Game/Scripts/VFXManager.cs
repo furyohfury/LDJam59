@@ -29,8 +29,8 @@ namespace Game
         [Range(0, 1f)]
 #if UNITY_EDITOR
         [OnValueChanged(nameof(OnVolumeChanged))]
-        private float _volume = 1f;
 #endif
+        private float _volume = 1f;
         [SerializeField]
         private float _bgMusicVolumeMult = 0.25f;
 

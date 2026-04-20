@@ -18,6 +18,7 @@ namespace Game
 
         private void OnCloseButton()
         {
+            VFXManager.Instance.PlayButtonClick();
             _tutorialUI.Show();
         }
 
