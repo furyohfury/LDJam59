@@ -1,4 +1,2 @@
 звук ui click
 menu bg и кнопка
-volumeslider sprites
-иконка игры

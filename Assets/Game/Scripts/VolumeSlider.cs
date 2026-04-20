@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Game.Game
 {
     [DefaultExecutionOrder(10)]
-    public sealed class VolumeSlider : MonoBehaviour
+    public sealed class VolumeSlider : Singleton<VolumeSlider>
     {
         [Header("References")]
         [SerializeField]
