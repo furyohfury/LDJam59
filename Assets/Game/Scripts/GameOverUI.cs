@@ -52,11 +52,13 @@ namespace Game
 
         private void OnRetryButton()
         {
+            VFXManager.Instance.PlayButtonClick();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void OnQuitButton()
         {
+            VFXManager.Instance.PlayButtonClick();
             SceneManager.LoadScene("MenuScene");
         }
 
