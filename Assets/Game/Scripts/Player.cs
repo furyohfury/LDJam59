@@ -258,5 +258,10 @@ namespace Game
 
             _glows.Clear();
         }
+
+        public void SetSpeedCycle(int[] playerSpeedCycle)
+        {
+            SpeedCycle.Speeds = playerSpeedCycle.Clone() as int[];
+        }
     }
 }
