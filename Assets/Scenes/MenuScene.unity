@@ -203,10 +203,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 994062403}
   m_HandleRect: {fileID: 754054668}
   m_Direction: 0
-  m_MinValue: 0.5
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.671
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   _signalPickupVFX: {fileID: 7974493957416377259, guid: 7bd0b458f09ce8048b8721a4e69df1fc, type: 3}
   _bgMusicSource: {fileID: 497335376}
   _uiAudioSource: {fileID: 2007219192}
-  _uiClickSound: {fileID: 0}
+  _uiClickSound: {fileID: 8300000, guid: d0cd451c653834d42bb3b8582f015425, type: 3}
   _volume: 1
   _bgMusicVolumeMult: 0.25
 --- !u!4 &948831776

@@ -35,6 +35,7 @@ namespace Game
 
         private void OnCloseButton()
         {
+            VFXManager.Instance.PlayButtonClick();
             DOTween.Sequence()
                    .Append(transform.DOScale(Vector3.zero, _enlargeAnimDuration)
                                     .SetEase(_closeAnimEase))
