@@ -44,6 +44,7 @@ namespace Game
             }
 
             WorldMap.Instance.RemoveEntity(signal.Entity);
+            VFXManager.Instance.SpawnSignalPickupVFX(_activeSignal.transform.position);
             Destroy(signal.gameObject);
             _activeSignal = null;
             PlayerScore.Instance.CountPickUpSignalBounty();

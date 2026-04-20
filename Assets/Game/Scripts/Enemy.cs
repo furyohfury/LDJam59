@@ -13,6 +13,10 @@ namespace Game
         private Vector2Int[] _damageRange;
         [SerializeField]
         private EnemyDamageRange _damageRangePrefab;
+        [SerializeField]
+        private AudioSource _audioSource;
+        [SerializeField]
+        private AudioClip _deathClip;
         private readonly Dictionary<GridTile, EnemyDamageRange> _damageRanges = new Dictionary<GridTile, EnemyDamageRange>();
 
         public void Init()
@@ -27,9 +31,8 @@ namespace Game
                 if (damageRangeTile != null
                     && WorldMap.Instance.IsTileFree(damageRangeTile))
                 {
-                    EnemyDamageRange damageRange = Instantiate(_damageRangePrefab, WorldMap.Instance.GetTilePosition(damageRangeTile)
-                        , Quaternion.identity
-                        , transform);
+                    EnemyDamageRange damageRange = Instantiate(_damageRangePrefab, WorldMap.Instance.GetTilePosition(damageRangeTile),
+                        Quaternion.identity, transform);
                     damageRange.Enemy = this;
                     _damageRanges.Add(damageRangeTile, damageRange);
                     damageRangeTile.Entity = damageRange.Entity;
@@ -39,6 +42,7 @@ namespace Game
 
         public async Awaitable Die()
         {
+            _audioSource.PlayOneShot(_deathClip);
             _animator.SetTrigger("Die");
             float length = _animator.GetCurrentAnimatorStateInfo(0).length;
 

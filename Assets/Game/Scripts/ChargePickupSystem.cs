@@ -20,8 +20,8 @@ namespace Game
             {
                 GridTile randomTile = freeTiles.GetRandom();
                 ChargePickup randomPrefab = _prefabs[Random.Range(0, _prefabs.Length)];
-                ChargePickup pickup = Instantiate(randomPrefab, WorldMap.Instance.GetTilePosition(randomTile.Position), Quaternion.identity
-                    , _container);
+                ChargePickup pickup = Instantiate(randomPrefab, WorldMap.Instance.GetTilePosition(randomTile.Position), Quaternion.identity,
+                    _container);
                 int chargeAmount = Random.Range(chargePickupsBorders.x, chargePickupsBorders.y);
                 pickup.SetChargeValue(chargeAmount);
                 randomTile.Entity = pickup.Entity;
@@ -35,8 +35,8 @@ namespace Game
             WorldMap.Instance.RemoveEntity(chargePickup.Entity);
             Player.Instance.Charge += chargePickup.Charge;
             _chargePickups.Remove(chargePickup);
+            VFXManager.Instance.SpawnChargePickupVFX(chargePickup.transform.position);
             Destroy(chargePickup.gameObject);
-            // TODO sfx, vfx
         }
     }
 }

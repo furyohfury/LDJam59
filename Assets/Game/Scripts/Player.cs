@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Game.Extensions;
 using TriInspector;
 using UnityEngine;
 
@@ -50,6 +51,14 @@ namespace Game
         private Animator _animator;
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
+        [SerializeField]
+        private AudioSource _audioSource;
+        [SerializeField]
+        private AudioClip _moveClip;
+        [SerializeField]
+        private AudioClip[] _takeDamageClips;
+        [SerializeField]
+        private AudioClip _deathClip;
 
         private GridTile _playerGridTile = new GridTile(Vector2Int.zero);
         private int _currentSpeedIndex;
@@ -59,6 +68,8 @@ namespace Game
         private static readonly int MoveUp = Animator.StringToHash("Up");
         private static readonly int MoveDown = Animator.StringToHash("Down");
         private static readonly int Idle = Animator.StringToHash("Idle");
+        private static readonly int DieKey = Animator.StringToHash("Die");
+        private static readonly int DischargeKey = Animator.StringToHash("Discharge");
         private readonly Dictionary<Vector2Int, int> _animatorKeys = new Dictionary<Vector2Int, int>
                                                                      {
                                                                          {
@@ -99,6 +110,8 @@ namespace Game
             _animator.SetTrigger(animationKey);
             float duration = Speed / _visualMoveSpeed;
             transform.DOMove(tilePosition, duration).SetEase(_moveEase, _moveOverShoot);
+            _audioSource.clip = _moveClip;
+            _audioSource.Play();
             PlayerController.Instance.Disable();
 
             await Awaitable.WaitForSecondsAsync(duration);
@@ -185,6 +198,8 @@ namespace Game
             }
             else
             {
+                _audioSource.clip = _takeDamageClips.GetRandom();
+                _audioSource.Play();
                 DOTween.Sequence()
                        .Append(_spriteRenderer.DOColor(_damagedColor, _damagedAnimDuration).SetEase(_damagedAnimEase))
                        .Append(_spriteRenderer.DOColor(Color.white, _damagedAnimDuration).SetEase(_damagedAnimEase));
@@ -193,12 +208,20 @@ namespace Game
 
         private void Die()
         {
-            _animator.SetTrigger("Die");
+            PlayDeathSFX();
+            _animator.SetTrigger(DieKey);
         }
 
         private void Discharge()
         {
-            _animator.SetTrigger("Discharge");
+            PlayDeathSFX();
+            _animator.SetTrigger(DischargeKey);
+        }
+
+        private void PlayDeathSFX()
+        {
+            _audioSource.clip = _deathClip;
+            _audioSource.Play();
         }
 
         public void UpdatePossibleCellsGlow()

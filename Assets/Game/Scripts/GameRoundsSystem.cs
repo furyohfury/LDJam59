@@ -32,6 +32,7 @@ namespace Game
             ChargePickupSystem.Instance.SpawnChargePickups(roundData.ChargePickupsCount, roundData.ChargePickupsValue);
             SignalSystem.Instance.SpawnSignal(roundData.MinimalSignalDistanceFromPlayer);
             roundData.PlayerSpeedCycle.CopyTo(Player.Instance.SpeedCycle.Speeds, 0);
+            Player.Instance.Speed = Player.Instance.SpeedCycle.Speeds[0];
             Player.Instance.UpdatePossibleCellsGlow();
         }
 
