@@ -57,7 +57,7 @@ namespace Game
 
         private void OnQuitButton()
         {
-            // TODO back to menu
+            SceneManager.LoadScene("MenuScene");
         }
 
         private void OnDisable()

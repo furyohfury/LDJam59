@@ -15,7 +15,7 @@ namespace Game
             {
                 Debug.Log("player dead");
                 PlayerController.Instance.Disable();
-                // TODO logic
+                GameOverUI.Instance.Show();
             }
         }
 
