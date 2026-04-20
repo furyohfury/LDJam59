@@ -475,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -9.5}
+  m_AnchoredPosition: {x: -608.4, y: -44.5}
   m_SizeDelta: {x: 346.6032, y: 55.8698}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &217356202
@@ -539,7 +539,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 102.799}
+  m_SizeDelta: {x: 0, y: 40.1406}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &265800889
 MonoBehaviour:
@@ -695,8 +695,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 539.881, y: 102.799}
+  m_AnchoredPosition: {x: -56.7166, y: -8.570984}
+  m_SizeDelta: {x: 531.1644, y: 82.4603}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &412322145
 MonoBehaviour:
@@ -1706,8 +1706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -102.79999}
-  m_SizeDelta: {x: 0, y: 102.799}
+  m_AnchoredPosition: {x: -866, y: -35}
+  m_SizeDelta: {x: 0, y: 65.37}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1058859729
 MonoBehaviour:
@@ -1874,8 +1874,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
-  m_SizeDelta: {x: 69.4, y: 0}
+  m_AnchoredPosition: {x: 20.4, y: -0}
+  m_SizeDelta: {x: 43.135, y: -21.1442}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1333648882
 MonoBehaviour:
@@ -3264,8 +3264,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -31.8, y: -18.5}
+  m_SizeDelta: {x: -137.6639, y: -27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065323139
 MonoBehaviour:
@@ -3314,7 +3314,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 46.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

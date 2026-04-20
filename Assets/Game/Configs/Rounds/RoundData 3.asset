@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoundData
   ChargePickupsCount: 1
   ChargePickupsValue: {x: 5, y: 5}
-  MinimalSignalDistanceFromPlayer: 9
+  MinimalSignalDistanceFromPlayer: 5
   EnemiesSpawnNumber: 5
   PlayerSpeedCycle: 020000000300000004000000
