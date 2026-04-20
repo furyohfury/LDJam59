@@ -63,6 +63,7 @@ namespace Game
         private GridTile _playerGridTile = new GridTile(Vector2Int.zero);
         private int _currentSpeedIndex;
         private readonly List<GameObject> _glows = new List<GameObject>();
+        private bool _isDead;
         private static readonly int MoveLeft = Animator.StringToHash("Left");
         private static readonly int MoveRight = Animator.StringToHash("Right");
         private static readonly int MoveUp = Animator.StringToHash("Up");
@@ -125,7 +126,8 @@ namespace Game
             Speed = SpeedCycle.Speeds[++_currentSpeedIndex % SpeedCycle.Speeds.Length];
             UpdatePossibleCellsGlow();
 
-            if (Charge <= 0)
+            if (Charge <= 0
+                && !_isDead)
             {
                 Discharge();
             }
@@ -213,6 +215,7 @@ namespace Game
         {
             PlayDeathSFX();
             _animator.SetTrigger(DieKey);
+            _isDead = true;
         }
 
         private void Discharge()
